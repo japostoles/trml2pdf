@@ -298,15 +298,20 @@ class _rml_canvas(object):
                 
         if node.hasAttribute("preserveAspectRatio"):
             args["preserveAspectRatio"] = True
+        if node.hasAttribute("mask"):
+            args["mask"] = node.getAttribute("mask")
+        if node.hasAttribute("anchor"):
+            args["anchor"] = node.getAttribute("anchor")
         if ('width' in args) and (not 'height' in args):
             args['height'] = sy * args['width'] / sx
         elif ('height' in args) and (not 'width' in args):
             args['width'] = sx * args['height'] / sy
         elif ('width' in args) and ('height' in args) and (not args.get("preserveAspectRatio", False)):
-            if (float(args['width'])/args['height'])>(float(sx)>sy):
-                args['width'] = sx * args['height'] / sy
-            else:
-                args['height'] = sy * args['width'] / sx
+            #if (float(args['width'])/args['height'])>(float(sx)>sy):
+            #    args['width'] = sx * args['height'] / sy
+            #else:
+            #    args['height'] = sy * args['width'] / sx
+            pass
         self.canvas.drawImage(img, **args)
         
     def _barcode(self, node):
